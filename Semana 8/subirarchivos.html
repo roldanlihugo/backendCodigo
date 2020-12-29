@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir archivos</title>
+</head>
+
+<body>
+    <input type="file" id="archivo">
+</body>
+<script>
+    const subidaDeArchivos = event => {
+        // evitar que se recargue la pagina despues de enviar el archivo.
+        // asi yo saco los archivos de mi input file
+        const archivo = event.target.files;
+        console.log(archivo[0])
+        const formData = new FormData();
+        formData.append("imagen",archivo[0]);
+        fetch("http://localhost:5000/subirImagen/categoria/123456789",{
+            method:"POST",
+            body: formData
+        }).then(response=>response.json())
+        .then(data=>console.log(data))
+        .catch(error=>console.error(error));
+
+    }
+    document.getElementById("archivo").addEventListener("change", event => {
+        subidaDeArchivos(event);
+        event.preventDefault(); });
+</script>
+
+</html>

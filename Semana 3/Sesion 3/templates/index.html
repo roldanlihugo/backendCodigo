@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi web con Flask</title>
+</head>
+<body>
+    <ul>
+        <li><a href="/acerca-de">Acerca de</a></li>
+        <li><a href="/contactame">Contactame</a></li>
+</ul>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Hobbies</th>
+        </tr>
+        
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{cliente.id}}</td>
+                <td>{{cliente.nombre}}</td>
+                <td>{{cliente.edad}}</td>
+                <td>
+                    <ul>
+                    {% for hobby in cliente.hobbies %}
+                        <li>{{hobby}}</li>
+                    {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% endfor%}
+
+    </table>
+    
+    {#{clientes}#}
+    <p>Hola Mundo desde Flask</p>
+    
+</body>
+</html>

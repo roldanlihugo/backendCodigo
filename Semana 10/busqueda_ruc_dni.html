@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="ruc">
+    <select id="select">
+        <option value="DNI">DNI</option>
+        <option value="RUC">RUC</option>
+    </select>
+    <input type="button" value="Enviar" id="enviar">
+    <p id="resultado"></p>
+    <script>
+        let opcion = document.getElementById("select");
+        let ruc = document.getElementById("ruc")
+        let boton = document.getElementById("enviar");
+        let resultado = document.getElementById("resultado");
+        console.log(document.getElementById("ruc").value)
+        // https://stackoverflow.com/questions/54896998/how-to-process-fetch-response-from-an-opaque-type
+        // https://stackoverflow.com/questions/43262121/trying-to-use-fetch-and-pass-in-mode-no-cors/43268098#43268098
+        var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        boton.onclick = async () => {
+            if (opcion.value === "DNI") {
+                await fetch(proxyUrl + `https://api.reniec.cloud/dni/${ruc.value}`).then((obj) => {
+                    return obj.json();
+                }).then(data => {
+                    resultado.innerText=""
+                    resultado.innerText=JSON.stringify(data);
+                    console.log(data);
+                });
+            } else if (opcion.value === "RUC") {
+                await fetch(proxyUrl + `https://api.sunat.cloud/ruc/${ruc.value}`).then((obj) => {
+                    return obj.json();
+                }).then(data => {
+                    resultado.innerText="";
+                    resultado.innerText=JSON.stringify(data);
+                    console.log(data)
+                })
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>

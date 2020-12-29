@@ -1,0 +1,11 @@
+{
+    // entorno virtual de flask semana 8
+    // "python.pythonPath": "c:\\Users\\ederi\\entornosemana8\\Scripts\\python.exe",
+    // entorno de canchitas incluye django y drf y jwt
+    "python.pythonPath": "c:\\Users\\ederi\\entornovirtual1\\Scripts\\python.exe",
+    "python.linting.pylintArgs": [
+        "--disable=C0111", // missing docstring
+        "--load-plugins=pylint_django,pylint_celery",
+    ],
+    "liveServer.settings.port": 5502,
+}
